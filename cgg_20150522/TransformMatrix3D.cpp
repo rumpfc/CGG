@@ -30,12 +30,13 @@ double& TransformMatrix3D::at(const int row, const int col)
 }
 
 
-// unit matrix initialization
+/* unit matrix initialization
 //
 //  /  1   0   0   0  \
 //  |  0   1   0   0  |
 //  |  0   0   1   0  |
 //  \  0   0   0   1  /
+*/
 
 void TransformMatrix3D::unitMatrix()
 {
@@ -49,12 +50,13 @@ void TransformMatrix3D::unitMatrix()
 }
 
 
-// translation matrix
+/* translation matrix
 //
 //  /  1   0   0  tx  \
 //  |  0   1   0  ty  |
 //  |  0   0   1  tz  |
 //  \  0   0   0   1  /
+*/
 
 void TransformMatrix3D::translate(const double tx, const double ty, const double tz)
 {
@@ -66,12 +68,13 @@ void TransformMatrix3D::translate(const double tx, const double ty, const double
 }
 
 
-// scale matrix
+/* scale matrix
 //
 //  / sx   0   0   0  \
 //  |  0  sy   0   0  |
 //  |  0   0  sz   0  |
 //  \  0   0   0   1  /
+*/
 
 void TransformMatrix3D::scale(const double sx, const double sy, const double sz)
 {
@@ -83,12 +86,13 @@ void TransformMatrix3D::scale(const double sx, const double sy, const double sz)
 }
 
 
-// Z rotation matrix
+/* Z rotation matrix
 //
 //  /  cos(t)   -sin(t)      0         0  \
 //  |  sin(t)    cos(t)      0         0  |
 //  |    0         0         1         0  |
 //  \    0         0         0         1  /
+*/
 
 void TransformMatrix3D::rotateAroundZ(const double theta)
 {
@@ -104,12 +108,13 @@ void TransformMatrix3D::rotateAroundZ(const double theta)
 }
 
 
-// X rotation matrix
+/* X rotation matrix
 //
 //  /    1         0         0         0  \
 //  |    0       cos(t)   -sin(t)      0  |
 //  |    0       sin(t)    cos(t)      0  |
 //  \    0         0         0         1  /
+*/
 
 void TransformMatrix3D::rotateAroundX(const double theta)
 {
@@ -125,12 +130,13 @@ void TransformMatrix3D::rotateAroundX(const double theta)
 }
 
 
-// Y rotation matrix
+/* Y rotation matrix
 //
 //  /  cos(t)      0       sin(t)      0  \
 //  |    0         1         0         0  |
 //  | -sin(t)      0       cos(t)      0  |
 //  \    0         0         0         1  /
+*/
 
 void TransformMatrix3D::rotateAroundY(const double theta)
 {
@@ -146,7 +152,7 @@ void TransformMatrix3D::rotateAroundY(const double theta)
 }
 
 
-// operator overloading
+// operator overloading -------------------------------------------------------
 
 TransformMatrix3D operator*(const TransformMatrix3D &M1, const TransformMatrix3D &M2)
 {

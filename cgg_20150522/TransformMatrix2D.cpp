@@ -30,11 +30,12 @@ double& TransformMatrix2D::at(const int row, const int col)
 }
 
 
-// unit matrix initialization
+/* unit matrix initialization
 //
 //  /  1   0   0  \
 //  |  0   1   0  |
 //  \  0   0   1  /
+*/
 
 void TransformMatrix2D::unitMatrix()
 {
@@ -48,11 +49,12 @@ void TransformMatrix2D::unitMatrix()
 }
 
 
-// translation matrix
+/* translation matrix
 //
 //  /  1   0  tx  \
 //  |  0   1  ty  |
 //  \  0   0   1  /
+*/
 
 void TransformMatrix2D::translate(const double tx, const double ty)
 {
@@ -63,11 +65,12 @@ void TransformMatrix2D::translate(const double tx, const double ty)
 }
 
 
-// scale matrix
+/* scale matrix
 //
 //  / sx   0   0  \
 //  |  0  sy   0  |
 //  \  0   0   1  /
+*/
 
 void TransformMatrix2D::scale(const double sx, const double sy)
 {
@@ -78,10 +81,12 @@ void TransformMatrix2D::scale(const double sx, const double sy)
 }
 
 
-// rotation matrix
+/* rotation matrix
+//
 //  /  cos(t)   -sin(t)   0  \
 //  |  sin(t)    cos(t)   0  |
 //  \    0         0      1  /
+*/
 
 void TransformMatrix2D::rotate(const double theta)
 {
@@ -109,6 +114,8 @@ void TransformMatrix2D::mirror(const bool x_axis, const bool y_axis)
 	k_[1][1] = x_axis ? -1.0 : 1.0;
 }
 
+
+// operator overloading -------------------------------------------------------
 
 TransformMatrix2D operator*(const TransformMatrix2D &M1, const TransformMatrix2D &M2)
 {
