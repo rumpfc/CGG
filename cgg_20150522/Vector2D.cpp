@@ -34,13 +34,13 @@ void Vector2D::normalize()
 
 // getter and setter methods --------------------------------------------------
 
-void Vector2D::setVector(double x, double y)
+void Vector2D::setVector(const double x, const double y)
 {
 	x_ = x;
 	y_ = y;
 }
 
-void Vector2D::setVector(Vector2D &v)
+void Vector2D::setVector(const Vector2D &v)
 {
 	x_ = v.x_;
 	y_ = v.y_;
@@ -58,50 +58,50 @@ double Vector2D::getY()
 
 // overloaded operators -------------------------------------------------------
 
-Vector2D operator+(Vector2D &v1, Vector2D &v2)
+Vector2D operator+(const Vector2D &v1, const Vector2D &v2)
 {
 	return Vector2D(v1.x_ + v2.x_, v1.y_ + v2.y_);
 }
 
-Vector2D operator-(Vector2D &v1, Vector2D &v2)
+Vector2D operator-(const Vector2D &v1, const Vector2D &v2)
 {
 	return Vector2D(v1.x_ - v2.x_, v1.y_ - v2.y_);
 }
 
-Vector2D operator*(Vector2D &v, double d)
+Vector2D operator*(const Vector2D &v, const double d)
 {
 	return Vector2D(v.x_ * d, v.y_ * d);
 }
 
-Vector2D operator*(double d, Vector2D &v)
+Vector2D operator*(const double d, const Vector2D &v)
 {
 	return Vector2D(v.x_ * d, v.y_ * d);
 }
 
-Vector2D operator/(Vector2D &v, double d)
+Vector2D operator/(const Vector2D &v, const double d)
 {
 	return Vector2D(v.x_ / d, v.y_ / d);
 }
 
-void Vector2D::operator+=(Vector2D &v)
+void Vector2D::operator+=(const Vector2D &v)
 {
 	x_ += v.x_;
 	y_ += v.y_;
 }
 
-void Vector2D::operator-=(Vector2D &v)
+void Vector2D::operator-=(const Vector2D &v)
 {
 	x_ -= v.x_;
 	y_ -= v.y_;
 }
 
-void Vector2D::operator*=(double d)
+void Vector2D::operator*=(const double d)
 {
 	x_ *= d;
 	y_ *= d;
 }
 
-void Vector2D::operator/=(double d)
+void Vector2D::operator/=(const double d)
 {
 	x_ /= d;
 	y_ /= d;
@@ -110,7 +110,7 @@ void Vector2D::operator/=(double d)
 
 // extra overloaded operators
 
-double operator*(Vector2D &v1, Vector2D &v2)
+double operator*(const Vector2D &v1, const Vector2D &v2)
 {
 	return v1.x_ * v2.x_ + v1.y_ * v2.y_;
 }

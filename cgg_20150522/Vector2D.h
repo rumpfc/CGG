@@ -19,29 +19,29 @@ public:
 
 	// getter/setter
 
-	void setVector(double x, double y);
-	void setVector(Vector2D &v);
+	void setVector(const double x, const double y);
+	void setVector(const Vector2D &v);
 
 	double getX();
 	double getY();
 
 	// overloading operators for vector calculations
 
-	friend Vector2D operator+(Vector2D &v1, Vector2D &v2);
-	friend Vector2D operator-(Vector2D &v1, Vector2D &v2);
-	friend Vector2D operator*(Vector2D &v, double d);
-	friend Vector2D operator*(double d, Vector2D &v);
-	friend Vector2D operator/(Vector2D &v, double d);
+	friend Vector2D operator+(const Vector2D &v1, const Vector2D &v2);
+	friend Vector2D operator-(const Vector2D &v1, const Vector2D &v2);
+	friend Vector2D operator*(const Vector2D &v, const double d);
+	friend Vector2D operator*(const double d, const Vector2D &v);
+	friend Vector2D operator/(const Vector2D &v, const double d);
 
-	void operator+=(Vector2D &v);
-	void operator-=(Vector2D &v);
-	void operator*=(double d);
-	void operator/=(double d);
+	void operator+=(const Vector2D &v);
+	void operator-=(const Vector2D &v);
+	void operator*=(const double d);
+	void operator/=(const double d);
 
 	// not really needed, but just in case: Dot-Product (*)
 	// we will use dot(v1, v2) from "Mathtools.h"
 
-	friend double operator*(Vector2D &v1, Vector2D &v2);
+	friend double operator*(const Vector2D &v1, const Vector2D &v2);
 };
 
 #endif
