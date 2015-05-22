@@ -54,7 +54,7 @@ void TransformMatrix2D::unitMatrix()
 //  |  0   1  ty  |
 //  \  0   0   1  /
 
-void TransformMatrix2D::translate(double tx, double ty)
+void TransformMatrix2D::translate(const double tx, const double ty)
 {
 	unitMatrix();
 
@@ -69,7 +69,7 @@ void TransformMatrix2D::translate(double tx, double ty)
 //  |  0  sy   0  |
 //  \  0   0   1  /
 
-void TransformMatrix2D::scale(double sx, double sy)
+void TransformMatrix2D::scale(const double sx, const double sy)
 {
 	unitMatrix();
 
@@ -83,7 +83,7 @@ void TransformMatrix2D::scale(double sx, double sy)
 //  |  sin(t)    cos(t)   0  |
 //  \    0         0      1  /
 
-void TransformMatrix2D::rotate(double theta)
+void TransformMatrix2D::rotate(const double theta)
 {
 	unitMatrix();
 
@@ -101,7 +101,7 @@ void TransformMatrix2D::rotate(double theta)
 // along x-axis = inversed y values
 // along y-axis = inversed x values
 
-void TransformMatrix2D::mirror(bool x_axis, bool y_axis)
+void TransformMatrix2D::mirror(const bool x_axis, const bool y_axis)
 {
 	unitMatrix();
 	
@@ -110,7 +110,7 @@ void TransformMatrix2D::mirror(bool x_axis, bool y_axis)
 }
 
 
-TransformMatrix2D operator*(TransformMatrix2D &M1, TransformMatrix2D &M2)
+TransformMatrix2D operator*(const TransformMatrix2D &M1, const TransformMatrix2D &M2)
 {
 	TransformMatrix2D result;
 
@@ -131,7 +131,7 @@ TransformMatrix2D operator*(TransformMatrix2D &M1, TransformMatrix2D &M2)
 }
 
 
-Vector2D operator*(TransformMatrix2D &M, Vector2D &v)
+Vector2D operator*(const TransformMatrix2D &M, Vector2D &v)
 {
 	double x = M.k_[0][0] * v.getX() + M.k_[0][1] * v.getY() + M.k_[0][2];
 	double y = M.k_[1][0] * v.getX() + M.k_[1][1] * v.getY() + M.k_[1][2];

@@ -56,7 +56,7 @@ void TransformMatrix3D::unitMatrix()
 //  |  0   0   1  tz  |
 //  \  0   0   0   1  /
 
-void TransformMatrix3D::translate(double tx, double ty, double tz)
+void TransformMatrix3D::translate(const double tx, const double ty, const double tz)
 {
 	unitMatrix();
 
@@ -73,7 +73,7 @@ void TransformMatrix3D::translate(double tx, double ty, double tz)
 //  |  0   0  sz   0  |
 //  \  0   0   0   1  /
 
-void TransformMatrix3D::scale(double sx, double sy, double sz)
+void TransformMatrix3D::scale(const double sx, const double sy, const double sz)
 {
 	unitMatrix();
 
@@ -90,7 +90,7 @@ void TransformMatrix3D::scale(double sx, double sy, double sz)
 //  |    0         0         1         0  |
 //  \    0         0         0         1  /
 
-void TransformMatrix3D::rotateAroundZ(double theta)
+void TransformMatrix3D::rotateAroundZ(const double theta)
 {
 	unitMatrix();
 
@@ -111,7 +111,7 @@ void TransformMatrix3D::rotateAroundZ(double theta)
 //  |    0       sin(t)    cos(t)      0  |
 //  \    0         0         0         1  /
 
-void TransformMatrix3D::rotateAroundX(double theta)
+void TransformMatrix3D::rotateAroundX(const double theta)
 {
 	unitMatrix();
 
@@ -132,7 +132,7 @@ void TransformMatrix3D::rotateAroundX(double theta)
 //  | -sin(t)      0       cos(t)      0  |
 //  \    0         0         0         1  /
 
-void TransformMatrix3D::rotateAroundY(double theta)
+void TransformMatrix3D::rotateAroundY(const double theta)
 {
 	unitMatrix();
 
@@ -148,7 +148,7 @@ void TransformMatrix3D::rotateAroundY(double theta)
 
 // operator overloading
 
-TransformMatrix3D operator*(TransformMatrix3D &M1, TransformMatrix3D &M2)
+TransformMatrix3D operator*(const TransformMatrix3D &M1, const TransformMatrix3D &M2)
 {
 	TransformMatrix3D result;
 
@@ -169,7 +169,7 @@ TransformMatrix3D operator*(TransformMatrix3D &M1, TransformMatrix3D &M2)
 }
 
 
-Vector3D operator*(TransformMatrix3D &M, Vector3D &v)
+Vector3D operator*(const TransformMatrix3D &M, Vector3D &v)
 {
 	double x = M.k_[0][0] * v.getX() + M.k_[0][1] * v.getY() + M.k_[0][2] * v.getZ() + M.k_[0][3];
 	double y = M.k_[1][0] * v.getX() + M.k_[1][1] * v.getY() + M.k_[1][2] * v.getZ() + M.k_[1][3];

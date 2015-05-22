@@ -36,19 +36,19 @@ public:
 	// transformation matrix types
 	// only one possible, but can be combined with multiplication
 
-	void translate(double tx = 0.0, double ty = 0.0, double tz = 0.0);
-	void scale(double sx = 1.0, double sy = 1.0, double sz = 1.0);
+	void translate(const double tx = 0.0, const double ty = 0.0, const double tz = 0.0);
+	void scale(const double sx = 1.0, const double sy = 1.0, const double sz = 1.0);
 
 	// 3 rotations for 3 axis
 
-	void rotateAroundX(double theta = 0.0);
-	void rotateAroundY(double theta = 0.0);
-	void rotateAroundZ(double theta = 0.0);
+	void rotateAroundX(const double theta = 0.0);
+	void rotateAroundY(const double theta = 0.0);
+	void rotateAroundZ(const double theta = 0.0);
 
 	// operator overloading
 
-	friend TransformMatrix3D operator*(TransformMatrix3D &M1, TransformMatrix3D &M2);
-	friend Vector3D operator*(TransformMatrix3D &M, Vector3D &v);
+	friend TransformMatrix3D operator*(const TransformMatrix3D &M1, const TransformMatrix3D &M2);
+	friend Vector3D operator*(const TransformMatrix3D &M, Vector3D &v);
 };
 
 #endif

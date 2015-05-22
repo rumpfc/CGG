@@ -37,15 +37,15 @@ public:
 	// transformation matrix types
 	// only one possible, but can be combined with multiplication
 
-	void translate(double tx = 0.0, double ty = 0.0);
-	void scale(double sx = 1.0, double sy = 1.0);
-	void rotate(double theta = 0.0);
-	void mirror(bool x_axis = false, bool y_axis = false);
+	void translate(const double tx = 0.0, const double ty = 0.0);
+	void scale(const double sx = 1.0, const double sy = 1.0);
+	void rotate(const double theta = 0.0);
+	void mirror(const bool x_axis = false, const bool y_axis = false);
 
 	// operator overloading
 
-	friend TransformMatrix2D operator*(TransformMatrix2D &M1, TransformMatrix2D &M2);
-	friend Vector2D operator*(TransformMatrix2D &M, Vector2D &v);
+	friend TransformMatrix2D operator*(const TransformMatrix2D &M1, const TransformMatrix2D &M2);
+	friend Vector2D operator*(const TransformMatrix2D &M, Vector2D &v);
 };
 
 #endif
