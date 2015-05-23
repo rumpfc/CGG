@@ -1,5 +1,18 @@
 #include "Mathtools.h"
 
+
+// Direction calculation
+
+Vector2D Mathtools::direction(Vector2D &start, Vector2D &dest)
+{
+	return dest - start;
+}
+
+Vector3D Mathtools::direction(Vector3D &start, Vector3D &dest)
+{
+	return dest - start;
+}
+
 // Distance calculation -------------------------------------------------------
 
 double Mathtools::distance(Vector2D &start, Vector2D &dest)

@@ -10,6 +10,10 @@
 
 namespace Mathtools
 {
+	// Direction Vector from start to destination
+	Vector2D direction(Vector2D &start, Vector2D &dest);
+	Vector3D direction(Vector3D &start, Vector3D &dest);
+
 	// Distance between starting Vector/Point and destination Vector/Point
 	double distance(Vector2D &start, Vector2D &dest);
 	double distance(Vector3D &start, Vector3D &dest);
