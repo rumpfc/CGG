@@ -71,8 +71,9 @@ Color& Image::at(const int row, const int col)
 void Image::save(const std::string& filename)
 {
 	std::ofstream of;
+	std::string name = filename + ".ppm";
 
-	of.open(filename + ".ppm", std::ios::binary);
+	of.open(name.c_str(), std::ios::binary);
 
 	if (!of.is_open())
 	{
