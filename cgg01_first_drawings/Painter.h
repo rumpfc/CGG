@@ -14,6 +14,9 @@ private:
 	Color fillColor_;
 	bool fill_;
 
+	// private method which draws lines with an color input
+	// Bresenham's algorithm
+	void drawLine(int x1, int y1, int x2, int y2, Color& color);
 public:
 	Painter(Renderer* renderer);
 	virtual ~Painter();
@@ -28,11 +31,16 @@ public:
 
 	void setFiller(bool fill);
 
-	// drawing a line with Bresenham's algorithm
+	// drawing a line
 	void drawLine(int x1, int y1, int x2, int y2);
 	void drawLine(Vector2D& p1, Vector2D& p2);
 
+	// drawing a rectangle
 	void drawRect(int x, int y, int width, int height);
+	void drawRect(Vector2D& topleft, Vector2D& bottomright);
+
+	// draw an ellipse
+	void drawEllipse(int mx, int my, int rx, int ry);
 };
 
 #endif

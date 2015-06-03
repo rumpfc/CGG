@@ -33,6 +33,7 @@ public:
 	friend Vector2D operator*(const double d, const Vector2D &v);
 	friend Vector2D operator/(const Vector2D &v, const double d);
 
+	void operator=(const Vector2D &v);
 	void operator+=(const Vector2D &v);
 	void operator-=(const Vector2D &v);
 	void operator*=(const double d);

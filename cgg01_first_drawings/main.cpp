@@ -10,7 +10,12 @@ int main(int argc, char** argv)
 {
 	std::cout << "Computer Graphics Guide" << std::endl;
 
-	// create renderer, set background color and start rendering
+	/* create renderer, set background color and start rendering
+	   width  = 640
+	   height = 480
+	   try to change image size, as long as it's positive
+	   doesn't actually matter, we use abs(x) to make it positive ;)
+	*/
 	RendererSimpleDrawing renderer(640, 480);
 	renderer.setBackgroundColor(0xffffff);
 	renderer.render();

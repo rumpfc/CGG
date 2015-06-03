@@ -71,9 +71,7 @@ void Image::save(const std::string& filename)
 	<RGB binary color code>
 	*/
 
-	of << "P6\n";
-	of << width_ << " " << height_ << "\n";
-	of << "255\n";
+	of << "P6 " << width_ << " " << height_ << " 255 ";
 
 	int pixels = width_ * height_;
 	for (int p = 0; p < pixels; p++)

@@ -83,6 +83,12 @@ Vector2D operator/(const Vector2D &v, const double d)
 	return Vector2D(v.x_ / d, v.y_ / d);
 }
 
+void Vector2D::operator=(const Vector2D &v)
+{
+	x_ = v.x_;
+	y_ = v.y_;
+}
+
 void Vector2D::operator+=(const Vector2D &v)
 {
 	x_ += v.x_;

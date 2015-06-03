@@ -7,7 +7,7 @@ RendererSimpleDrawing::RendererSimpleDrawing() : Renderer()
 }
 
 
-RendererSimpleDrawing::RendererSimpleDrawing(const int width_, const int height_) : Renderer(width_, height_)
+RendererSimpleDrawing::RendererSimpleDrawing(const int width, const int height) : Renderer(width, height)
 {
 }
 
@@ -21,7 +21,12 @@ RendererSimpleDrawing::~RendererSimpleDrawing()
 
 void RendererSimpleDrawing::render()
 {
+	// create Painter class to draw on "this" Renderer
+
 	Painter painter(this);
+
+	// time to draw
+	// TODO: Be creative ;)
 	
 	// green line
 	painter.setLineColor(0x00ff00);
@@ -44,4 +49,14 @@ void RendererSimpleDrawing::render()
 	// now another rect, but without fill color
 	painter.setFiller(false);
 	painter.drawRect(350, 250, 110, 80);
+
+	// ellipse
+	painter.setFillColor(0xffff00);
+	painter.setLineColor(0x000000);
+	painter.drawEllipse(100, 300, 50, 80);
+
+	// another ellipse without fill color
+	painter.setFiller(false);
+	painter.setLineColor(0x0000ff);
+	painter.drawEllipse(160, 290, 80, 50);
 }

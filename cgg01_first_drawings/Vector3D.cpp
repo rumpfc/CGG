@@ -91,6 +91,13 @@ Vector3D operator/(const Vector3D &v, const double d)
 	return Vector3D(v.x_ / d, v.y_ / d, v.z_ / d);
 }
 
+void Vector3D::operator=(const Vector3D &v)
+{
+	x_ = v.x_;
+	y_ = v.y_;
+	z_ = v.z_;
+}
+
 void Vector3D::operator+=(const Vector3D &v)
 {
 	x_ += v.x_;

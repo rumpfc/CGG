@@ -7,7 +7,7 @@ class RendererSimpleDrawing : public Renderer
 {
 public:
 	RendererSimpleDrawing();
-	RendererSimpleDrawing(const int width_, const int height_);
+	RendererSimpleDrawing(const int width, const int height);
 	virtual ~RendererSimpleDrawing();
 
 	// override render method

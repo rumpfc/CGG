@@ -15,7 +15,9 @@ private:
 	float b_;
 
 public:
-	Color(float r = 0.0f, float g = 0.0f, float b = 0.0f); // starts with black
+	Color();             // starts with black
+	Color(const float r, const float g, const float b);
+	Color(const int colorcode);
 	Color(const Color& src);
 	virtual ~Color();
 

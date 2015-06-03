@@ -51,8 +51,9 @@ void Painter::setFiller(bool fill)
 	fill_ = fill;
 }
 
+// private line drawing method which uses a color input
 
-void Painter::drawLine(int x1, int y1, int x2, int y2)
+void Painter::drawLine(int x1, int y1, int x2, int y2, Color& color)
 {
 	// Do we have a Renderer to draw onto
 	if (!renderer_)
@@ -93,7 +94,7 @@ void Painter::drawLine(int x1, int y1, int x2, int y2)
 	x = x1;
 	y = y1;
 	err = es / 2;
-	renderer_->colorPixel(x, y, lineColor_);
+	renderer_->colorPixel(x, y, color);
 
 	/* calculate pixel */
 	for (t = 0; t < es; ++t) /* t zaehlt die Pixel, el ist auch Anzahl */
@@ -114,14 +115,24 @@ void Painter::drawLine(int x1, int y1, int x2, int y2)
 			x += pdx;
 			y += pdy;
 		}
-		renderer_->colorPixel(x, y, lineColor_);
+		renderer_->colorPixel(x, y, color);
 	}
+}
+
+void Painter::drawLine(int x1, int y1, int x2, int y2)
+{
+	drawLine(x1, y1, x2, y2, lineColor_);
 }
 
 void Painter::drawLine(Vector2D& p1, Vector2D& p2)
 {
 	// no need to reinvent the wheel
-	this->drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+	int x1 = static_cast<int>(p1.getX());
+	int y1 = static_cast<int>(p1.getY());
+	int x2 = static_cast<int>(p2.getX());
+	int y2 = static_cast<int>(p2.getY());
+
+	this->drawLine(x1, y1, x2, y2, lineColor_);
 }
 
 void Painter::drawRect(int x, int y, int width, int height)
@@ -130,22 +141,86 @@ void Painter::drawRect(int x, int y, int width, int height)
 		return;
 
 	// fill color as line color
-	Color temp(lineColor_);
-	lineColor_.setColor(fillColor_);
 
 	if (fill_)
 	{
 		// filling a rectangle is like drawing multiple lines in each row
 		for (int r = 0; r <= height; r++)
 		{
-			this->drawLine(x, y + r, x + width, y + r);
+			this->drawLine(x, y + r, x + width, y + r, fillColor_);
 		}
 	}
 
-	lineColor_.setColor(temp);
+	// draw border lines
 	
-	this->drawLine(x, y, x + width, y);
-	this->drawLine(x+width, y, x + width, y+height);
-	this->drawLine(x+width, y+height, x, y+height);
-	this->drawLine(x, y+height, x, y);
+	this->drawLine(x, y, x + width, y, lineColor_);
+	this->drawLine(x+width, y, x + width, y+height, lineColor_);
+	this->drawLine(x+width, y+height, x, y+height, lineColor_);
+	this->drawLine(x, y+height, x, y, lineColor_);
+}
+
+
+void Painter::drawRect(Vector2D& topleft, Vector2D& bottomright)
+{
+	Vector2D diff = bottomright - topleft;
+
+	int x      = static_cast<int>(topleft.getX());
+	int y      = static_cast<int>(topleft.getY());
+	int width  = static_cast<int>(diff.getX());
+	int height = static_cast<int>(diff.getY());
+
+	drawRect(x, y, width, height);
+}
+
+
+void Painter::drawEllipse(int mx, int my, int rx, int ry)
+{
+	if (!renderer_)
+		return;
+
+	// source of implementation (german wiki):
+	// http://de.wikipedia.org/wiki/Bresenham-Algorithmus#Ellipsen
+
+	int dx = 0, dy = ry;
+	int rx2 = rx*rx, ry2 = ry*ry;
+	int err = ry2 - (2 * ry - 1)*rx2, e2;
+
+	// for our fill color we need to check if the current row (dy) was drawn already
+	// first initiation is never drawn
+
+	int lastDy = dy;
+	do
+	{
+		if (fill_ && (dy != lastDy))
+		{
+			this->drawLine(mx - dx, my + dy, mx + dx, my + dy, fillColor_);
+			this->drawLine(mx - dx, my - dy, mx + dx, my - dy, fillColor_);
+			lastDy = dy;
+		}
+
+		renderer_->colorPixel(mx + dx, my + dy, lineColor_);
+		renderer_->colorPixel(mx - dx, my + dy, lineColor_);
+		renderer_->colorPixel(mx - dx, my - dy, lineColor_);
+		renderer_->colorPixel(mx + dx, my - dy, lineColor_);
+
+		e2 = 2 * err;
+
+		if (e2 < (2 * dx + 1)*ry2)
+		{
+			dx++;
+			err += (2 * dx + 1)*ry2;
+		}
+
+		if (e2 > -(2 * dy - 1)*rx2)
+		{
+			dy--;
+			err -= (2 * dy - 1)*rx2;
+		}
+	} while (dy >= 0);
+
+	while (dx++ < rx)
+	{
+		renderer_->colorPixel(mx + dx, my, lineColor_);
+		renderer_->colorPixel(mx - dx, my, lineColor_);
+	}
 }

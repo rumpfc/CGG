@@ -1,8 +1,18 @@
 #include "Color.h"
 
 
-Color::Color(float r, float g, float b) : r_(r), g_(g), b_(b)
+Color::Color() : r_(0.0f), g_(0.0f), b_(0.0f)
 {
+}
+
+Color::Color(const float r, const float g, const float b)
+{
+	setColor(r, g, b);
+}
+
+Color::Color(const int colorcode)
+{
+	setColor(colorcode);
 }
 
 Color::Color(const Color& src) : r_(src.r_), g_(src.g_), b_(src.b_)
@@ -18,12 +28,14 @@ Color::~Color()
 
 void Color::setColor(const float r, const float g, const float b)
 {
-	r_ = r; g_ = g; b_ = b;
+	r_ = (r < 0.0f) ? 0.0f : (r > 1.0f) ? 1.0f : r;
+	g_ = (g < 0.0f) ? 0.0f : (g > 1.0f) ? 1.0f : g;
+	b_ = (b < 0.0f) ? 0.0f : (b > 1.0f) ? 1.0f : b;
 }
 
 void Color::setColor(const int colorcode)
 {
-	// colorcode: 0xRRGGBB  with values 0, 1, ..., E, F
+	// colorcode: 0xRRGGBB  with R, G and B = 0, 1, ..., E, F
 	r_ = static_cast<float>((colorcode >> 16) & 0xff) / 255.0f;
 	g_ = static_cast<float>((colorcode >>  8) & 0xff) / 255.0f;
 	b_ = static_cast<float>(colorcode & 0xff) / 255.0f;
@@ -41,9 +53,9 @@ void Color::setColor(const float color[3])
 	r_ = color[0]; g_ = color[1]; b_ = color[2];
 }
 
-void Color::setRed(const float red) { r_ = red; }
-void Color::setGreen(const float green) { g_ = green; }
-void Color::setBlue(const float blue) { b_ = blue; }
+void Color::setRed(const float red) { r_ = (red < 0.0f) ? 0.0f : (red > 1.0f) ? 1.0f : red; }
+void Color::setGreen(const float green) { g_ = (green < 0.0f) ? 0.0f : (green > 1.0f) ? 1.0f : green; }
+void Color::setBlue(const float blue) { b_ = (blue < 0.0f) ? 0.0f : (blue > 1.0f) ? 1.0f : blue; }
 
 void Color::setRed(const unsigned char red) { r_ = red / 255.0f; }
 void Color::setGreen(const unsigned char green) { g_ = green / 255.0f; }
