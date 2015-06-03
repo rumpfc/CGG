@@ -9,7 +9,7 @@ Renderer::Renderer() : width_(640), height_(480)
 	initBuffer();
 }
 
-Renderer::Renderer(const int width, const int height) : width_(abs(width)), height_(abs(height))
+Renderer::Renderer(const int width, const int height) : width_(std::abs(width)), height_(std::abs(height))
 {
 	initBuffer();
 }
