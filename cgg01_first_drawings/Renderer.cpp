@@ -71,7 +71,7 @@ Color* Renderer::getColor(int x, int y)
 }
 
 
-Image* Renderer::createImage()
+Image Renderer::createImage()
 {
-	return new Image(width_, height_, buffer_);
+	return Image(width_, height_, buffer_);
 }

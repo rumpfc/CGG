@@ -42,7 +42,7 @@ public:
 
 	// create an Image
 
-	Image* createImage();
+	Image createImage();
 };
 
 #endif

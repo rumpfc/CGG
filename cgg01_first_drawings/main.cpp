@@ -10,13 +10,14 @@ int main(int argc, char** argv)
 {
 	std::cout << "Computer Graphics Guide" << std::endl;
 
+	// create renderer, set background color and start rendering
 	RendererSimpleDrawing renderer(640, 480);
 	renderer.setBackgroundColor(0xffffff);
 	renderer.render();
 
-	Image* img = renderer.createImage();
-	img->save("image");
-	delete img;
+	// get an image and save it as PPM file
+	Image img = renderer.createImage();
+	img.save("image");
 
 	return 0;
 }

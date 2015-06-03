@@ -8,63 +8,45 @@
 
 Image::Image(int width, int height) : width_(width), height_(height)
 {
-	pixel_ = new Color*[height_];
-
-	for (int row = 0; row < height_; row++)
-	{
-		pixel_[row] = new Color[width_];
-	}
+	int pixels = width_*height_;
+	pixel_ = new Color[pixels];
 }
 
 
 Image::Image(int width, int height, Color* buffer) : width_(width), height_(height)
 {
-	pixel_ = new Color*[height_];
+	int pixels = width_*height_;
+	pixel_ = new Color[pixels];
 
-	for (int row = 0; row < height_; row++)
+	for (int p = 0; p < pixels; p++)
 	{
-		pixel_[row] = new Color[width_];
-
-		for (int col = 0; col < width_; col++)
-		{
-			pixel_[row][col].setColor(buffer[Mathtools::pixelIndex(width_, row, col)]);
-		}
+		pixel_[p].setColor(buffer[p]);
 	}
 }
 
 
 Image::Image(const Image& src) : width_(src.width_), height_(src.height_)
 {
-	pixel_ = new Color*[height_];
+	int pixels = width_*height_;
+	pixel_ = new Color[pixels];
 
-	for (int row = 0; row < height_; row++)
+	for (int p = 0; p < pixels; p++)
 	{
-		pixel_[row] = new Color[width_];
-
-		for (int col = 0; col < width_; col++)
-		{
-			pixel_[row][col].setColor(src.pixel_[row][col]);
-		}
+		pixel_[p].setColor(src.pixel_[p]);
 	}
 }
 
 
 Image::~Image()
 {
-	// delete coloms at each row
-	for (int row = 0; row < height_; row++)
-	{
-		delete[] pixel_[row];
-	}
-
-	// delete rows
+	// delete pixels
 	delete[] pixel_;
 }
 
 
 Color& Image::at(const int row, const int col)
 {
-	return pixel_[row][col];
+	return pixel_[Mathtools::pixelIndex(width_, row, col)];
 }
 
 
@@ -93,13 +75,11 @@ void Image::save(const std::string& filename)
 	of << width_ << " " << height_ << "\n";
 	of << "255\n";
 
-	for (int row = 0; row < height_; row++)
+	int pixels = width_ * height_;
+	for (int p = 0; p < pixels; p++)
 	{
-		for (int col = 0; col < width_; col++)
-		{
-			// write 8Bit color value instead of float value
-			of << at(row, col).getRed8B() << at(row, col).getGreen8B() << at(row, col).getBlue8B();
-		}
+		// write 8Bit color value instead of float value
+		of << pixel_[p].getRed8B() << pixel_[p].getGreen8B() << pixel_[p].getBlue8B();
 	}
 
 	of.close();

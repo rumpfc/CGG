@@ -61,56 +61,56 @@ void Painter::drawLine(int x1, int y1, int x2, int y2)
 	// source of implementation (german wiki):
 	// http://de.wikipedia.org/wiki/Bresenham-Algorithmus#C-Implementierung
 
-	int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
+	int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, ef, es, err;
 
-	/* Entfernung in beiden Dimensionen berechnen */
+	/* Distance between x and y */
 	dx = x2 - x1;
 	dy = y2 - y1;
 
-	/* Vorzeichen des Inkrements bestimmen */
+	/* figure out sign (+/-) */
 	incx = (dx > 0) ? 1 : (dx < 0) ? -1 : 0;
 	incy = (dy > 0) ? 1 : (dy < 0) ? -1 : 0;;
 	if (dx<0) dx = -dx;
 	if (dy<0) dy = -dy;
 
-	/* feststellen, welche Entfernung größer ist */
+	/* which distance (dx or dy) is larger */
 	if (dx>dy)
 	{
-		/* x ist schnelle Richtung */
-		pdx = incx; pdy = 0;    /* pd. ist Parallelschritt */
-		ddx = incx; ddy = incy; /* dd. ist Diagonalschritt */
-		es = dy;   el = dx;   /* Fehlerschritte schnell, langsam */
+		/* x is faster */
+		pdx = incx; pdy = 0;    /* step parallel */
+		ddx = incx; ddy = incy; /* step diagonal */
+		ef = dy;   es = dx;    /* error for fast steps (es) and slow steps (el) */
 	}
 	else
 	{
-		/* y ist schnelle Richtung */
-		pdx = 0;    pdy = incy; /* pd. ist Parallelschritt */
-		ddx = incx; ddy = incy; /* dd. ist Diagonalschritt */
-		es = dx;   el = dy;   /* Fehlerschritte schnell, langsam */
+		/* y is faster */
+		pdx = 0;    pdy = incy; /* step parallel */
+		ddx = incx; ddy = incy; /* step diagonal */
+		ef = dx;   es = dy;   /* error for fast steps (es) and slow steps (el) */
 	}
 
-	/* Initialisierungen vor Schleifenbeginn */
+	/* initialize */
 	x = x1;
 	y = y1;
-	err = el / 2;
+	err = es / 2;
 	renderer_->colorPixel(x, y, lineColor_);
 
-	/* Pixel berechnen */
-	for (t = 0; t < el; ++t) /* t zaehlt die Pixel, el ist auch Anzahl */
+	/* calculate pixel */
+	for (t = 0; t < es; ++t) /* t zaehlt die Pixel, el ist auch Anzahl */
 	{
-		/* Aktualisierung Fehlerterm */
-		err -= es;
+		/* update error */
+		err -= ef;
 		if (err < 0)
 		{
-			/* Fehlerterm wieder positiv (>=0) machen */
-			err += el;
-			/* Schritt in langsame Richtung, Diagonalschritt */
+			/* make error term positiv (>= 0) */
+			err += es;
+			/* step diagonal */
 			x += ddx;
 			y += ddy;
 		}
 		else
 		{
-			/* Schritt in schnelle Richtung, Parallelschritt */
+			/* step parallel */
 			x += pdx;
 			y += pdy;
 		}

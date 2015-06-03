@@ -16,8 +16,8 @@ private:
 	int width_;
 	int height_;
 
-	// Pixel
-	Color** pixel_;
+	// Pixelbuffer (size = width_ * height_)
+	Color* pixel_;
 
 public:
 	Image(int width = 640, int height = 480);      // standard size
