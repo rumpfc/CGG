@@ -253,8 +253,15 @@ void Renderer2D::render()
 	Vector2D yBegin(0.0, center.getY() - camera_->getViewHeight());
 	Vector2D yEnd(0.0, center.getY() + camera_->getViewHeight());
 
-	painter.drawLine(transform * xBegin, transform * xEnd);
-	painter.drawLine(transform * yBegin, transform * yEnd);
+	Vector2D start = transform * xBegin;
+	Vector2D end = transform * xEnd;
+
+	painter.drawLine(start, end);
+
+	start = transform * yBegin;
+	end = transform * yEnd;
+
+	painter.drawLine(start, end);
 
 	// x-axis
 	for (int x = static_cast<int>(xBegin.getX()); x <= static_cast<int>(xEnd.getX()); x++)
@@ -263,7 +270,9 @@ void Renderer2D::render()
 		Vector2D temp1(x, -sigma);
 		Vector2D temp2(x,  sigma);
 
-		painter.drawLine(transform * temp1, transform * temp2);
+		temp1 = transform * temp1;
+		temp2 = transform * temp2;
+		painter.drawLine(temp1, temp2);
 	}
 
 	// y-axis
@@ -273,7 +282,9 @@ void Renderer2D::render()
 		Vector2D temp1(-sigma, y);
 		Vector2D temp2( sigma, y);
 
-		painter.drawLine(transform * temp1, transform * temp2);
+		temp1 = transform * temp1;
+		temp2 = transform * temp2;
+		painter.drawLine(temp1, temp2);
 	}
 
 	// draw objects, first triangles, then border lines
@@ -285,7 +296,7 @@ void Renderer2D::render()
 		if (obj)
 		{
 			// draw triangles using rasterization
-			for (size_t index = 0; index < obj->getTriangleSize(); index++)
+			for (unsigned int index = 0; index < obj->getTriangleSize(); index++)
 			{
 				Surface2D* triangle = obj->getTriangle(index);
 				Vector2D p0 = transform * (*(triangle->getP0()));
@@ -298,7 +309,7 @@ void Renderer2D::render()
 			}
 
 			// draw border lines
-			for (size_t index = 0; index < obj->getLineSize(); index++)
+			for (unsigned int index = 0; index < obj->getLineSize(); index++)
 			{
 				Line2D* line = obj->getLine(index);
 				Vector2D p1 = transform * (*(line->getP1()));
