@@ -17,19 +17,19 @@ Object2D::~Object2D()
 {
 	for (Vector2D *point : points_)
 	{
-		if (point != NULL)
+		if (point)
 			delete point;
 	}
 
 	for (Line2D *line : lines_)
 	{
-		if (line != NULL)
+		if (line)
 			delete line;
 	}
 
 	for (Surface2D *tri : triangles_)
 	{
-		if (tri != NULL)
+		if (tri)
 			delete tri;
 	}
 }
