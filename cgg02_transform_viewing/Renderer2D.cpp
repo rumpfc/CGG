@@ -68,7 +68,9 @@ void Renderer2D::rasterization(Surface2D* triangle)
 	Vector3D dr;    // delta right  edge
 	Vector3D db;    // delta bottom edge
 
-	double dir = Mathtools::cross(p1 - p0, p2 - p0).getZ();
+	Vector3D v1 = p1 - p0;
+	Vector3D v2 = p2 - p0;
+	double dir = Mathtools::cross(v1, v2).getZ();
 
 	if (dir < 0.0)
 	{
@@ -127,7 +129,7 @@ void Renderer2D::rasterization(Surface2D* triangle)
 	xr = (y - p0.getY())*mEdgeR + p0.getX();
 
 	// start drawing first part
-	for (y; y < p1.getY(); y = y + 1.0)
+	for (; y < p1.getY(); y = y + 1.0)
 	{
 		double x;
 		if ((xl - floor(xl)) <= 0.5)
@@ -202,7 +204,7 @@ void Renderer2D::rasterization(Surface2D* triangle)
 	}
 
 	// start drawing second part
-	for (y; y < p2.getY(); y = y + 1.0)
+	for (; y < p2.getY(); y = y + 1.0)
 	{
 		double x;
 		if ((xl - floor(xl)) <= 0.5)
