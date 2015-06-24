@@ -10,7 +10,7 @@
 
 /*
 Abstract class for drawable 2D objects
-Contains a list of points and lines
+Contains a list of points, triangles (surfaces) and lines
 
 2D Objects can be transformed
 */

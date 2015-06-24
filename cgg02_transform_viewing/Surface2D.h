@@ -5,6 +5,11 @@
 
 class Vector2D;
 
+/*
+A surface has a color and 3 points, forming a triangle
+used to render it for rasterization algorithm
+*/
+
 class Surface2D
 {
 private:
