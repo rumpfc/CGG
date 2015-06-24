@@ -170,12 +170,16 @@ void Object2D::setFill(bool fill)
 
 void Object2D::rotate(const double degree)
 {
-	this->transform(Mathtools::rotate2D(degree));
+	TransformMatrix2D rotation;
+	rotation.rotate(degree);
+	this->transform(rotation);
 }
 
 void Object2D::translate(const double tx, const double ty)
 {
-	this->transform(Mathtools::translate2D(tx, ty));
+	TransformMatrix2D translation;
+	translation.translate(tx, ty);
+	transform(translation);
 }
 
 void Object2D::transform(TransformMatrix2D& matrix)
