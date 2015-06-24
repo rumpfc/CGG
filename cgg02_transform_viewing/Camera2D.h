@@ -18,8 +18,10 @@ private:
 	Vector2D center_;
 
 	// viewport and screen size (width height)
-	int sWidth_, sHeight_;
-	double vWidth_, vHeight_;
+	int sWidth_;
+	int sHeight_;
+	double vWidth_;
+	double vHeight_;
 
 	// Camera rotated in rotate_° degree
 	double rotate_;

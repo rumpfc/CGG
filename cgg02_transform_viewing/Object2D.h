@@ -57,9 +57,9 @@ public:
 	Line2D*   getLine(int index);
 	Surface2D* getTriangle(int index);
 
-	size_t getPointSize();
-	size_t getLineSize();
-	size_t getTriangleSize();
+	unsigned int getPointSize();
+	unsigned int getLineSize();
+	unsigned int getTriangleSize();
 
 	Color& getLineColor();
 	Color& getFillColor();

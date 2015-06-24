@@ -75,19 +75,19 @@ Surface2D* Object2D::getTriangle(int index)
 }
 
 
-size_t Object2D::getPointSize()
+unsigned int Object2D::getPointSize()
 {
 	return points_.size();
 }
 
 
-size_t Object2D::getLineSize()
+unsigned int Object2D::getLineSize()
 {
 	return lines_.size();
 }
 
 
-size_t Object2D::getTriangleSize()
+unsigned int Object2D::getTriangleSize()
 {
 	return triangles_.size();
 }
