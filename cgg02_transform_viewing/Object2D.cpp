@@ -41,7 +41,7 @@ void Object2D::updateLineColor()
 {
 	for (Line2D *line : lines_)
 	{
-		if (line != NULL)
+		if (line)
 			line->setColor(lineColor_);
 	}
 }
@@ -50,7 +50,7 @@ void Object2D::updateFillColor()
 {
 	for (Surface2D *tri : triangles_)
 	{
-		if (tri != NULL)
+		if (tri)
 			tri->setColor(fillColor_);
 	}
 }

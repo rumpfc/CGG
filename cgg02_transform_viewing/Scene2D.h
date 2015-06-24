@@ -27,7 +27,7 @@ public:
 
 	// get object
 	Object2D* getObject(int index);
-	size_t getObjectSize();
+	unsigned int getObjectSize();
 };
 
 #endif

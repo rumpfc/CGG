@@ -62,7 +62,7 @@ Object2D* Scene2D::getObject(int index)
 }
 
 
-size_t Scene2D::getObjectSize()
+unsigned int Scene2D::getObjectSize()
 {
 	return objects_.size();
 }
