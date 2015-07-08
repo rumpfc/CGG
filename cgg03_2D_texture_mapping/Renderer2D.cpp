@@ -307,7 +307,9 @@ void Renderer2D::render()
 					Vector2D p1 = transform * (*(triangle->getP1()));
 					Vector2D p2 = transform * (*(triangle->getP2()));
 
-					Surface2D transformedTriangle(p0, p1, p2, &(triangle->getColor()), triangle->getTexture());
+					Color color(triangle->getColor());
+
+					Surface2D transformedTriangle(p0, p1, p2, &color, triangle->getTexture());
 					transformedTriangle.setTextureAnchorPoints(triangle->getT0(), triangle->getT1(), triangle->getT2());
 
 					rasterization(&transformedTriangle);
@@ -323,7 +325,9 @@ void Renderer2D::render()
 					Vector2D p1 = transform * (*(line->getP1()));
 					Vector2D p2 = transform * (*(line->getP2()));
 
-					Line2D transformedLine(p1, p2, &(line->getColor()));
+					Color color(line->getColor());
+
+					Line2D transformedLine(p1, p2, &color);
 
 					painter.drawLine(transformedLine);
 				}
