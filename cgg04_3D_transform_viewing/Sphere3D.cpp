@@ -54,7 +54,6 @@ void Sphere3D::initTriangles()
 	{
 		for (int c = 0; c < accuracy_; c++)
 		{
-			int index = Mathtools::pixelIndex(accuracy_, r, c);
 			int r0 = r, r1 = r + 1;
 			int c0 = c, c1 = (c + 1) % accuracy_;
 
