@@ -44,9 +44,11 @@ Surface3D* Object3D::intersect(Ray& ray, double* dist)
 	// seperating sphere components into b and c
 
 	Vector3D distance = objectCenter_ - ray.getStart();
+	Vector3D direction = ray.getDirection();
+	direction.normalize(); // just in case
 	double l = distance.length();
 
-	double b = Mathtools::dot(distance, ray.getDirection());
+	double b = Mathtools::dot(distance, direction);
 	double c = l * l;
 
 	double temp = b*b - c + radius_*radius_;
