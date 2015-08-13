@@ -67,8 +67,8 @@ void Renderer3DRaycasting::render()
 	double topEdge = camera_->getNearPlane() * Mathtools::TAN(camera_->getFov() / 2.0);
 	double leftEdge = -topEdge * aspect;
 
-	double step_x = abs(2.0*leftEdge) / static_cast<double>(width_);
-	double step_y = abs(2.0*topEdge) / static_cast<double>(height_);
+	double step_x = 2.0*(-leftEdge) / static_cast<double>(width_);
+	double step_y = 2.0*topEdge / static_cast<double>(height_);
 
 	// shoot through every
 

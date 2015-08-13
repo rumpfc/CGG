@@ -37,7 +37,7 @@ void Sphere3D::initialize()
 
 void Sphere3D::initPoints()
 {
-	for (int r = 0; r < accuracy_; r++)
+	for (int r = 0; r <= accuracy_; r++)
 	{
 		for (int c = 0; c < accuracy_; c++)
 		{
@@ -51,7 +51,7 @@ void Sphere3D::initPoints()
 
 void Sphere3D::initTriangles()
 {
-	for (int r = 0; r < accuracy_-1; r++)
+	for (int r = 0; r < accuracy_; r++)
 	{
 		for (int c = 0; c < accuracy_; c++)
 		{

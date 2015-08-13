@@ -135,7 +135,7 @@ bool Surface3D::intersection(Ray& ray, double* distance)
 	double det = Mathtools::dot(e1, p);
 
 	// if determinant equal to 0, ray is parallel to surface
-	if (abs(det) < Mathtools::EPSILON)
+	if (det > -Mathtools::EPSILON && det < Mathtools::EPSILON)
 		return false;
 	
 	double inv_det = 1.0 / det;
