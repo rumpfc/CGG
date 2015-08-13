@@ -38,12 +38,13 @@ Color Shader::phong(Vector3D& point, Surface3D* triangle, std::vector<Light*> li
 		{
 			Vector3D viewDir = -point;
 			viewDir.normalize();
-			Vector3D reflectedLightDir = Mathtools::reflect(-lightDir, normal);
+			lightDir = -lightDir;
+			Vector3D reflectedLightDir = Mathtools::reflect(lightDir, normal);
 			reflectedLightDir.normalize();
 
 			coeff = Mathtools::dot(reflectedLightDir, viewDir);
 
-			finalColor += material->getSpecularColor() * light->getSpecularColor() * pow(Mathtools::max(coeff, 0.0), material->getShining()), 0.0 * attenuation;
+			finalColor += material->getSpecularColor() * light->getSpecularColor() * pow(Mathtools::max(coeff, 0.0), material->getShining()) * attenuation;
 		}
 		
 	}

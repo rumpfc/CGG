@@ -130,7 +130,8 @@ bool Surface3D::intersection(Ray& ray, double* distance)
 	Vector3D e1 = *points_[1] - *points_[0];
 	Vector3D e2 = *points_[2] - *points_[0];
 
-	Vector3D p = Mathtools::cross(ray.getDirection(), e2);
+	Vector3D direction = ray.getDirection();
+	Vector3D p = Mathtools::cross(direction, e2);
 	double det = Mathtools::dot(e1, p);
 
 	// if determinant equal to 0, ray is parallel to surface
@@ -149,7 +150,7 @@ bool Surface3D::intersection(Ray& ray, double* distance)
 
 	Vector3D Q = Mathtools::cross(T, e1);
 
-	double v = Mathtools::dot(ray.getDirection(), Q) * inv_det;
+	double v = Mathtools::dot(direction, Q) * inv_det;
 
 	// v must be between 0 and 1, in addition u+v < 1
 

@@ -37,9 +37,6 @@ void Sphere3D::initialize()
 
 void Sphere3D::initPoints()
 {
-	double hSteps = Mathtools::PI * 2.0 / static_cast<double>(accuracy_);  // horizontal
-	double vSteps = Mathtools::PI / static_cast<double>(accuracy_);        // vertical
-
 	for (int r = 0; r < accuracy_; r++)
 	{
 		for (int c = 0; c < accuracy_; c++)
