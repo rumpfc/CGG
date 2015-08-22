@@ -33,7 +33,6 @@ Renderer3DRaycasting::~Renderer3DRaycasting()
 Color Renderer3DRaycasting::raycasting(Ray& ray, double* dist)
 {
 	const int objectSize = scene_->getObjectSize();
-	const int lightSize = scene_->getLightSize();
 
 	Surface3D* surface = NULL;
 
