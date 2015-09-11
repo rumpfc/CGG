@@ -32,8 +32,6 @@ Renderer3DRaycasting::~Renderer3DRaycasting()
 
 Color Renderer3DRaycasting::raycasting(Ray& ray, double* dist)
 {
-	const int objectSize = scene_->getObjectSize();
-
 	Surface3D* surface = scene_->getClosestSurfaceAtRay(ray, dist);
 
 	if (surface == NULL)

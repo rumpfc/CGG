@@ -7,6 +7,7 @@
 #include "Color.h"
 
 #include <vector>
+#include <string>
 
 class Texture;
 class Ray;

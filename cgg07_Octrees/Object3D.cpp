@@ -4,7 +4,6 @@
 #include "Octree.h"
 
 #include <iostream>
-#include <string>
 
 Object3D::Object3D() : texture_(0), octree_(0)
 {
@@ -229,7 +228,6 @@ void Object3D::update()
 		return;
 
 	octree_->clear();
-	int counter = 0;
 	int max = triangles_.size();
 
 	std::cout << id_ << ": Adding " << max << " triangles to Octree...";

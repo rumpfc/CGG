@@ -31,8 +31,6 @@ void Octree::setRootCenterAndSize()
 	double xmin = inf, ymin = inf, zmin = inf;
 	double xmax = -inf, ymax = -inf, zmax = -inf;
 
-	double maxSize = 0.0;
-
 	for (unsigned int i = 0; i < pointSize; i++)
 	{
 		Vector3D *p = object_->getPoint(i);
